@@ -2,6 +2,7 @@ import React from "react";
 import Sources from "./source";
 import Signin from "./signin";
 import Activities from "./activities";
+import Navbar from "./navbar";
 
 class Main extends React.Component {
     constructor(props) {
@@ -11,7 +12,6 @@ class Main extends React.Component {
             isLoggedIn: false,
             token: "",
         }
-
     }
 
     logout() {
@@ -25,13 +25,7 @@ class Main extends React.Component {
     render() {
         return (
             <div>
-                <ul className="navbar navbar-light bg-light">
-                    <a className="navbar-brand">Money tracker</a>
-                    {(this.state.isLoggedIn ?
-                            <a className="nav-link disabled" onClick={() => this.logout()}>Log out</a> :
-                            null
-                    )}
-                </ul>
+                <Navbar isLoggedIn={this.state.isLoggedIn} logout={this.logout.bind(this)}/>
 
                 <div class="container">
                     <div class="row">

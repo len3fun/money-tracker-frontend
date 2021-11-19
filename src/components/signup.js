@@ -1,4 +1,8 @@
 import React, {Component} from "react";
+import Navbar from "./navbar";
+import Activities from "./activities";
+import Signin from "./signin";
+import Sources from "./source";
 
 class Signup extends Component {
     constructor(props) {
@@ -22,15 +26,15 @@ class Signup extends Component {
     }
 
     Name(event) {
-        this.setState({ Name: event.target.value })
+        this.setState({Name: event.target.value})
     }
 
     Login(event) {
-        this.setState({ Login: event.target.value })
+        this.setState({Login: event.target.value})
     }
 
     Password(event) {
-        this.setState({ Password: event.target.value })
+        this.setState({Password: event.target.value})
     }
 
     async signup() {
@@ -63,7 +67,8 @@ class Signup extends Component {
         }
     }
 
-    render() {
+    RegistrationForm = () => {
+
         return (
             <div>
                 <h1>Registration</h1>
@@ -82,15 +87,36 @@ class Signup extends Component {
                     </div>
                     <button type="submit" className="btn btn-primary" onClick={this.signup}>Sign up</button>
                 </form>
-                {this.state.isRegistered &&
+                {
+                    this.state.isRegistered &&
                     <text>Registered successfully!</text>
                 }
-                {this.state.registrationFailed &&
+                {
+                    this.state.registrationFailed &&
                     <text>Registration error: </text>
                 }
-                {this.state.errorMessage &&
+                {
+                    this.state.errorMessage &&
                     this.state.errorMessage
                 }
+            </div>
+        )
+    }
+
+    render() {
+        return (
+            <div>
+                <Navbar isLoggeIn={false}/>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm"></div>
+                        <div className="col-sm">
+                            <this.RegistrationForm/>
+                        </div>
+                        <div className="col-sm">
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

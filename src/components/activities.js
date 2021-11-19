@@ -3,6 +3,7 @@ import React from "react";
 const Activity = ({activities}) => {
     return (
         <div>
+            <h3>Activities:</h3>
             {activities.map((activity) => (
                 <div className="card" key={activity.id}>
                     <div className="card-body">

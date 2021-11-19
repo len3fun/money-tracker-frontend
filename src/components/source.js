@@ -3,6 +3,7 @@ import React from "react";
 const Source = ({ sources }) => {
     return (
         <div>
+            <h3>Sources:</h3>
             {sources.map((source) => (
                 <div class="card" key={source.id}>
                     <div class="card-body">
