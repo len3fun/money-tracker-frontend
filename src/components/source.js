@@ -7,7 +7,7 @@ const Source = ({ sources }) => {
             {sources.map((source) => (
                 <div class="card" key={source.id}>
                     <div class="card-body">
-                        <h5 class="card-title">{source.type}</h5>
+                        <h5 class="card-title"><span className="badge badge-info">{source.type}</span></h5>
                         <p class="card-text">{source.balance} {source.currency_id}</p>
                     </div>
                 </div>

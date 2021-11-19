@@ -64,7 +64,7 @@ class Signin extends React.Component {
                         <input type="password" onChange={this.password} className="form-control" id="inputPassword"/>
                     </div>
                     <button type="submit" className="btn btn-primary" onClick={this.signin}>Sign in</button>
-                    <a class="ml-3" href="/sign-up">Sign up</a>
+                    <a className="ml-3" href="/sign-up">Sign up</a>
                 </form>
             </div>
         )

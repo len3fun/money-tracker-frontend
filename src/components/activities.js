@@ -8,11 +8,12 @@ const Activity = ({activities}) => {
                 <div className="card" key={activity.id}>
                     <div className="card-body">
                         <h5 className="card-title">{activity.label}</h5>
-                        <p className="card-text">{activity.type === "expense" ?
-                            "-" :
-                            "+"}
-                            {activity.change}
-                        </p>
+                        {activity.type === "expense" ?
+                            <p className="card-title"><span className="badge badge-danger">- {activity.change}</span>
+                            </p> :
+                            <p className="card-title"><span className="badge badge-success">+ {activity.change}</span>
+                            </p>
+                        }
                         <p>
                             {activity.type}'s date:
                         </p>
