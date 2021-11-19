@@ -1,6 +1,7 @@
 import React from "react";
 import Sources from "./source";
 import Signin from "./signin";
+import Activities from "./activities";
 
 class Main extends React.Component {
     constructor(props) {
@@ -36,10 +37,11 @@ class Main extends React.Component {
                     <div class="row">
                         <div class="col-sm"></div>
                         <div class="col-sm">
-                            {(this.state.isLoggedIn) ? null : <Signin handleLogin={this.tryLogin.bind(this)}/>}
+                            {(this.state.isLoggedIn) ? <Activities token={this.state.token}/> :
+                                <Signin handleLogin={this.tryLogin.bind(this)}/>}
                         </div>
                         <div className="col-sm">
-                            { this.state.isLoggedIn ? <Sources token={this.state.token} /> : null}
+                            {this.state.isLoggedIn ? <Sources token={this.state.token}/> : null}
                         </div>
                     </div>
                 </div>

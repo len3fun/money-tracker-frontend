@@ -26,7 +26,6 @@ class Sources extends React.Component {
     }
 
     async componentDidMount() {
-        console.log("token: ", this.state.token)
         fetch("/api/sources", {
                 method: "GET",
                 headers: {
