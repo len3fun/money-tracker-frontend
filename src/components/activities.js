@@ -2,28 +2,17 @@ import React from "react";
 
 const Activity = ({activities}) => {
     return (
-        <div>
-            <h3>Activities:</h3>
-            {activities.map((activity) => (
-                <div className="card" key={activity.id}>
-                    <div className="card-body">
-                        <h5 className="card-title">{activity.label}</h5>
-                        {activity.type === "expense" ?
-                            <p className="card-title"><span className="badge badge-danger">- {activity.change}</span>
-                            </p> :
-                            <p className="card-title"><span className="badge badge-success">+ {activity.change}</span>
-                            </p>
-                        }
-                        <p>
-                            {activity.type}'s date:
-                        </p>
-                        <p>
-                            {activity.activity_date}
-                        </p>
-                    </div>
-                </div>
-            ))}
-        </div>
+        activities.map((activity) => (
+            <div className="list-group">
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                    <h5>{activity.label}</h5>
+                    {activity.type === "expense" ?
+                        <span className="badge badge-danger badge-pill">-{activity.change}</span> :
+                        <span className="badge badge-success badge-pill">+{activity.change}</span>
+                    }
+                </li>
+            </div>
+        ))
     )
 }
 
@@ -55,7 +44,10 @@ class Activities extends React.Component {
 
     render() {
         return (
-            <Activity activities={this.state.activities}/>
+            <div>
+                <h3>Activities:</h3>
+                <Activity activities={this.state.activities}/>
+            </div>
         )
     }
 }
