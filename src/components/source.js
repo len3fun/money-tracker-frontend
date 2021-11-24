@@ -2,13 +2,13 @@ import React from "react";
 
 const Source = ({ sources }) => {
     return (
-        <div>
-            <h3>Sources:</h3>
+        <div className="content">
+            <h2>Sources:</h2>
             {sources.map((source) => (
-                <div class="card" key={source.id}>
-                    <div class="card-body">
-                        <h5 class="card-title"><span className="badge badge-info">{source.type}</span></h5>
-                        <p class="card-text">{source.balance} {source.currency_id}</p>
+                <div class="card mb-5 mr-5" key={source.id}>
+                    <div class="card-content">
+                        <p class="title">{source.type}</p>
+                        <p class="subtitle">{source.balance} {source.currency_id}</p>
                     </div>
                 </div>
             ))}
