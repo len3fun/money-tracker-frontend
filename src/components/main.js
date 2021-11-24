@@ -28,7 +28,7 @@ class Main extends React.Component {
                 <Navbar isLoggedIn={this.state.isLoggedIn} logout={this.logout.bind(this)}/>
 
                 <div class="container">
-                    <div class="row">
+                    <div class="columns">
                         <div class="col-sm"></div>
                         <div class="col-sm">
                             {(this.state.isLoggedIn) ? <Activities token={this.state.token}/> :

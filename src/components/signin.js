@@ -52,19 +52,31 @@ class Signin extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="content">
                 <h1>Sign in</h1>
                 <form onSubmit={(e) => e.preventDefault()}>
-                    <div className="mb-1">
-                        <label htmlFor="inputLogin" className="form-label">Login</label>
-                        <input type="text" onChange={this.login} className="form-control" id="inputLogin"/>
+
+                    <div className="field">
+                        <label className="label">Login</label>
+                        <div className="control">
+                            <input className="input" type="text" onChange={this.login}/>
+                        </div>
                     </div>
-                    <div className="mb-1">
-                        <label htmlFor="inputPassword" className="form-label">Password</label>
-                        <input type="password" onChange={this.password} className="form-control" id="inputPassword"/>
+
+                    <div className="field">
+                        <label className="label">Password</label>
+                        <div className="control">
+                            <input className="input" type="password" onChange={this.password}/>
+                        </div>
                     </div>
-                    <button type="submit" className="btn btn-primary" onClick={this.signin}>Sign in</button>
-                    <a className="ml-3" href="/sign-up">Sign up</a>
+
+                    <div className="field is-grouped">
+                        <div className="control">
+                            <button className="button is-link" onClick={this.signin}>Sign in</button>
+                        </div>
+                        <a className="mt-2" href="/sign-up">Sign up</a>
+
+                    </div>
                 </form>
             </div>
         )
