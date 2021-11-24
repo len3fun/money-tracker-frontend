@@ -70,35 +70,57 @@ class Signup extends Component {
     RegistrationForm = () => {
 
         return (
-            <div>
-                <h1>Registration</h1>
-                <form onSubmit={(e) => e.preventDefault()}>
-                    <div className="mb-1">
-                        <label htmlFor="inputName" className="form-label">Name</label>
-                        <input type="text" onChange={this.Name} className="form-control" id="inputName"/>
+            <div className="columns">
+
+                <div className="column"></div>
+                <div className="column">
+                    <div className="content">
+                        <h1>Registration</h1>
+                        <form onSubmit={(e) => e.preventDefault()}>
+                            <div className="field">
+                                <label className="label">Name</label>
+                                <div className="control">
+                                    <input className="input" type="text" onChange={this.Name}/>
+                                </div>
+                            </div>
+
+                            <div className="field">
+                                <label className="label">Login</label>
+                                <div className="control">
+                                    <input className="input" type="text" onChange={this.Login}/>
+                                </div>
+                            </div>
+
+                            <div className="field">
+                                <label className="label">Password</label>
+                                <div className="control">
+                                    <input className="input" type="password" onChange={this.Password}/>
+                                </div>
+                            </div>
+
+                            <div className="field is-grouped">
+                                <div className="control">
+
+                                    <button type="submit" className="button is-link" onClick={this.signup}>Sign up
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        {
+                            this.state.isRegistered &&
+                            <text>Registered successfully!</text>
+                        }
+                        {
+                            this.state.registrationFailed &&
+                            <text>Registration error: </text>
+                        }
+                        {
+                            this.state.errorMessage &&
+                            this.state.errorMessage
+                        }
                     </div>
-                    <div className="mb-1">
-                        <label htmlFor="inputLogin" className="form-label">Login</label>
-                        <input type="text" onChange={this.Login} className="form-control" id="inputLogin"/>
-                    </div>
-                    <div className="mb-1">
-                        <label htmlFor="inputPassword" className="form-label">Password</label>
-                        <input type="password" onChange={this.Password} className="form-control" id="inputPassword"/>
-                    </div>
-                    <button type="submit" className="btn btn-primary" onClick={this.signup}>Sign up</button>
-                </form>
-                {
-                    this.state.isRegistered &&
-                    <text>Registered successfully!</text>
-                }
-                {
-                    this.state.registrationFailed &&
-                    <text>Registration error: </text>
-                }
-                {
-                    this.state.errorMessage &&
-                    this.state.errorMessage
-                }
+                </div>
+                <div className="column"></div>
             </div>
         )
     }
