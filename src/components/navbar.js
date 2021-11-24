@@ -8,7 +8,7 @@ class Navbar extends React.Component {
     render() {
         return (
             <div>
-                <nav className="navbar is-light" role="navigation">
+                <nav className="navbar is-light mb-5" role="navigation">
                     <div className="navbar-brand">
                         <a className="navbar-item" href="/">Money tracker</a>
                     </div>
