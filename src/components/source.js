@@ -1,6 +1,7 @@
 import React from "react";
+import axios from "axios";
 
-const Source = ({ sources }) => {
+const Source = ({sources}) => {
     return (
         <div className="content">
             <h2>Sources:</h2>
@@ -27,19 +28,19 @@ class Sources extends React.Component {
     }
 
     async componentDidMount() {
-        fetch("/api/sources", {
-                method: "GET",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                    'Authorization': 'Bearer ' + this.state.token,
-                }
-            }
-        ).then(res => res.json())
-            .then((data) => {
-                this.setState({sources: data})
-            })
-            .catch(console.log)
+        const sourcesUrl = "/api/sources"
+
+        const headers = {
+            'Accept': 'application/json',
+            'Content-type': 'application/json',
+            'Authorization': 'Bearer ' + this.state.token,
+        }
+
+        axios.get(sourcesUrl, {
+            headers: headers,
+        }).then(response => {
+            this.setState({sources: response.data})
+        }).catch(console.log)
     }
 
     render() {

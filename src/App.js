@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import Main from "./components/main";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import Signup from "./components/signup";

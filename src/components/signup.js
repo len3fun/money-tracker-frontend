@@ -1,8 +1,5 @@
 import React, {Component} from "react";
 import Navbar from "./navbar";
-import Activities from "./activities";
-import Signin from "./signin";
-import Sources from "./source";
 import axios from "axios";
 
 class Signup extends Component {
