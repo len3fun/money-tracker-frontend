@@ -1,30 +1,24 @@
 import React from "react";
 
-class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+function Navbar(props) {
+    return (
+        <div>
+            <nav className="navbar is-light mb-5" role="navigation">
+                <div className="navbar-brand">
+                    <a className="navbar-item" href="/">Money tracker</a>
+                </div>
 
-    render() {
-        return (
-            <div>
-                <nav className="navbar is-light mb-5" role="navigation">
-                    <div className="navbar-brand">
-                        <a className="navbar-item" href="/">Money tracker</a>
-                    </div>
-
-                    {(this.props.isLoggedIn ?
-                            <div id="navbarBasic" className="navbar-menu">
-                                <div className="navbar-start">
-                                    <a className="navbar-item" href="#" onClick={() => this.props.logout()}>Log out</a>
-                                </div>
-                            </div> :
-                            null
-                    )}
-                </nav>
-            </div>
-        )
-    }
+                {(props.isLoggedIn ?
+                        <div id="navbarBasic" className="navbar-menu">
+                            <div className="navbar-start">
+                                <a className="navbar-item" href="#" onClick={() => props.logout()}>Log out</a>
+                            </div>
+                        </div> :
+                        null
+                )}
+            </nav>
+        </div>
+    )
 }
 
 export default Navbar;
