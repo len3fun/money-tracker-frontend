@@ -27,7 +27,7 @@ class Sources extends React.Component {
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         const sourcesUrl = "/api/sources"
 
         const headers = {

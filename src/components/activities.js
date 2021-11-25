@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 const Activity = ({activities}) => {
     return (
@@ -26,20 +27,20 @@ class Activities extends React.Component {
         }
     }
 
-    async componentDidMount() {
-        fetch("api/activities", {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-type': 'application/json',
-                'Authorization': 'Bearer ' + this.state.token,
-            }
+    componentDidMount() {
+        const activitiesUrl = 'api/activities'
 
-        }).then(res => res.json())
-            .then((data) => {
-                this.setState({activities: data})
-            })
-            .catch(console.log)
+        const headers = {
+            'Accept': 'application/json',
+            'Content-type': 'application/json',
+            'Authorization': 'Bearer ' + this.state.token,
+        }
+
+        axios.get(activitiesUrl, {
+            headers: headers
+        }).then(response => {
+            this.setState({activities: response.data})
+        }).catch(console.log)
     }
 
     render() {
