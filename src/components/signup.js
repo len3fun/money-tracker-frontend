@@ -3,68 +3,62 @@ import Navbar from "./navbar";
 import Activities from "./activities";
 import Signin from "./signin";
 import Sources from "./source";
+import axios from "axios";
 
 class Signup extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            Name: "",
-            Login: "",
-            Password: "",
+            name: "",
+            login: "",
+            password: "",
             isRegistered: false,
             registrationFailed: false,
             errorMessage: "",
         }
 
-        this.Name = this.Name.bind(this);
-        this.Login = this.Login.bind(this);
-        this.Password = this.Password.bind(this);
-
-        // this.handleSubmit = this.handleSubmit.bind(this);
+        this.name = this.name.bind(this);
+        this.login = this.login.bind(this);
+        this.password = this.password.bind(this);
         this.signup = this.signup.bind(this);
     }
 
-    Name(event) {
-        this.setState({Name: event.target.value})
+    name(event) {
+        this.setState({name: event.target.value})
     }
 
-    Login(event) {
-        this.setState({Login: event.target.value})
+    login(event) {
+        this.setState({login: event.target.value})
     }
 
-    Password(event) {
-        this.setState({Password: event.target.value})
+    password(event) {
+        this.setState({password: event.target.value})
     }
 
-    async signup() {
-        const response = await fetch("auth/sign-up", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: this.state.Name,
-                username: this.state.Login,
-                password: this.state.Password
-            })
-        });
-        if (response.ok) {
-            console.log(response.ok)
+    signup() {
+        const signupUrl = "auth/sign-up"
+
+        const headers = {
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
         }
-        if (response.status === 200) {
+
+        axios.post(signupUrl, {
+            name: this.state.name,
+            username: this.state.login,
+            password: this.state.password
+        }, {
+            headers: headers
+        }).then(() => {
             this.setState({isRegistered: true})
-        }
-        if (!response.ok) {
-            const msg = await response.json()
-            const errorMsg = msg.message
-            console.log(errorMsg)
+        }).catch(error => {
+            console.log(error.response)
             this.setState({
                 registrationFailed: true,
-                errorMessage: errorMsg,
+                errorMessage: error.response.data.message,
             })
-        }
+        })
     }
 
     RegistrationForm = () => {
@@ -80,21 +74,21 @@ class Signup extends Component {
                             <div className="field">
                                 <label className="label">Name</label>
                                 <div className="control">
-                                    <input className="input" type="text" onChange={this.Name}/>
+                                    <input className="input" type="text" onChange={this.name}/>
                                 </div>
                             </div>
 
                             <div className="field">
                                 <label className="label">Login</label>
                                 <div className="control">
-                                    <input className="input" type="text" onChange={this.Login}/>
+                                    <input className="input" type="text" onChange={this.login}/>
                                 </div>
                             </div>
 
                             <div className="field">
                                 <label className="label">Password</label>
                                 <div className="control">
-                                    <input className="input" type="password" onChange={this.Password}/>
+                                    <input className="input" type="password" onChange={this.password}/>
                                 </div>
                             </div>
 

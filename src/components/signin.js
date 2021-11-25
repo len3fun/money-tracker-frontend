@@ -25,25 +25,22 @@ class Signin extends React.Component {
     }
 
     async signin() {
+        const signinUrl = "auth/sign-in"
+
         const headers = {
             'Accept': 'application/json',
             'Content-type': 'application/json'
         }
-        axios.post("auth/sign-in", {
+
+        axios.post(signinUrl, {
             username: this.state.login,
             password: this.state.password
         }, {
             headers: headers
         }).then((response) => {
             this.props.handleLogin(true, response.data.token)
-        }).catch(function (error) {
-            if (error.response) {
-                console.log("Response error: ", error.response);
-            } else if (error.request) {
-                console.log("Request error: ", error.request)
-            } else {
-                console.log("Error: ", error.message);
-            }
+        }).catch(error => {
+            console.log(error.response)
         })
     }
 
