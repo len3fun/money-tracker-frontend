@@ -1,14 +1,15 @@
 import React from "react";
+import axios from "axios";
 
-const Source = ({ sources }) => {
+const Source = ({sources}) => {
     return (
-        <div>
-            <h3>Sources:</h3>
+        <div className="content">
+            <h2>Sources:</h2>
             {sources.map((source) => (
-                <div class="card" key={source.id}>
-                    <div class="card-body">
-                        <h5 class="card-title"><span className="badge badge-info">{source.type}</span></h5>
-                        <p class="card-text">{source.balance} {source.currency_id}</p>
+                <div class="card mb-5 mr-5" key={source.id}>
+                    <div class="card-content">
+                        <p class="title">{source.type}</p>
+                        <p class="subtitle">{source.balance} {source.currency_id}</p>
                     </div>
                 </div>
             ))}
@@ -26,20 +27,20 @@ class Sources extends React.Component {
         }
     }
 
-    async componentDidMount() {
-        fetch("/api/sources", {
-                method: "GET",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                    'Authorization': 'Bearer ' + this.state.token,
-                }
-            }
-        ).then(res => res.json())
-            .then((data) => {
-                this.setState({sources: data})
-            })
-            .catch(console.log)
+    componentDidMount() {
+        const sourcesUrl = "/api/sources"
+
+        const headers = {
+            'Accept': 'application/json',
+            'Content-type': 'application/json',
+            'Authorization': 'Bearer ' + this.state.token,
+        }
+
+        axios.get(sourcesUrl, {
+            headers: headers,
+        }).then(response => {
+            this.setState({sources: response.data})
+        }).catch(console.log)
     }
 
     render() {

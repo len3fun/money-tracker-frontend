@@ -27,18 +27,16 @@ class Main extends React.Component {
             <div>
                 <Navbar isLoggedIn={this.state.isLoggedIn} logout={this.logout.bind(this)}/>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm"></div>
-                        <div class="col-sm">
+                    <div class="columns">
+                        <div class="column"></div>
+                        <div class="column is-one-fifth">
                             {(this.state.isLoggedIn) ? <Activities token={this.state.token}/> :
                                 <Signin handleLogin={this.tryLogin.bind(this)}/>}
                         </div>
-                        <div className="col-sm">
+                        <div className="column">
                             {this.state.isLoggedIn ? <Sources token={this.state.token}/> : null}
                         </div>
                     </div>
-                </div>
             </div>
         )
     }
