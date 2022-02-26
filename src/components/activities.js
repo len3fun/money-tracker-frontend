@@ -28,7 +28,7 @@ class Activities extends React.Component {
     }
 
     componentDidMount() {
-        const activitiesUrl = 'api/activities'
+        const activitiesUrl = 'http://localhost:8000/api/activities/'
 
         const headers = {
             'Accept': 'application/json',

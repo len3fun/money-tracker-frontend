@@ -34,7 +34,7 @@ class Signup extends Component {
     }
 
     signup() {
-        const signupUrl = "auth/sign-up"
+        const signupUrl = "http://localhost:8000/auth/sign-up"
 
         const headers = {
             'Accept': 'application/json',

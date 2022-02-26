@@ -28,7 +28,7 @@ class Sources extends React.Component {
     }
 
     componentDidMount() {
-        const sourcesUrl = "/api/sources"
+        const sourcesUrl = "http://localhost:8000/api/sources/"
 
         const headers = {
             'Accept': 'application/json',

@@ -25,7 +25,7 @@ class Signin extends React.Component {
     }
 
     async signin() {
-        const signinUrl = "auth/sign-in"
+        const signinUrl = "http://localhost:8000/auth/sign-in"
 
         const headers = {
             'Accept': 'application/json',
