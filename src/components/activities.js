@@ -9,11 +9,12 @@ const Activity = ({activities}) => {
     } else {
         let socialLinks = [];
         for (var date in activities) {
-            socialLinks.push(<>
-                <h2>{date}</h2>
-            </>)
+            socialLinks.push(
+                <h2 key={date}>{date}</h2>
+            )
             for (var i in activities[date]) {
-                let el = <div>
+                console.log(activities[date][i]["id"])
+                let el = <div key={activities[date][i]["id"]}>
                     <h5>{activities[date][i]["label"]}</h5>
                     {activities[date][i]["type"] === "expense" ?
                         <span className="badge badge-danger badge-pill">-{activities[date][i]["change"]}</span> :
@@ -53,6 +54,7 @@ class Activities extends React.Component {
             let date = el["activity_date"].split("T")[0];
             let time = el["activity_date"].split("T")[1];
             return {
+                "id": el["id"],
                 "activity_date": date,
                 "activity_time": time,
                 "type": el["type"],
