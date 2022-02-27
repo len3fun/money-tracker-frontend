@@ -2,19 +2,33 @@ import React from "react";
 import axios from "axios";
 
 const Activity = ({activities}) => {
-    return (
-        activities.map((activity) => (
-            <div className="list-group">
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                    <h5>{activity.label}</h5>
-                    {activity.type === "expense" ?
-                        <span className="badge badge-danger badge-pill">-{activity.change}</span> :
-                        <span className="badge badge-success badge-pill">+{activity.change}</span>
+    if (activities === null) {
+        return (
+            <></>
+        )
+    } else {
+        let socialLinks = [];
+        for (var date in activities) {
+            socialLinks.push(<>
+                <h2>{date}</h2>
+            </>)
+            for (var i in activities[date]) {
+                let el = <div>
+                    <h5>{activities[date][i]["label"]}</h5>
+                    {activities[date][i]["type"] === "expense" ?
+                        <span className="badge badge-danger badge-pill">-{activities[date][i]["change"]}</span> :
+                        <span className="badge badge-success badge-pill">+{activities[date][i]["change"]}</span>
                     }
-                </li>
+                </div>
+                socialLinks.push(el)
+            }
+        }
+        return (
+            <div>
+                {socialLinks}
             </div>
-        ))
-    )
+        )
+    }
 }
 
 class Activities extends React.Component {
@@ -25,6 +39,27 @@ class Activities extends React.Component {
             token: props.token,
             activities: [],
         }
+    }
+
+    groupBy = (object, key) => {
+        return object.reduce((rv, x) => {
+            (rv[x[key]] = rv[x[key]] || []).push(x);
+            return rv;
+        }, {})
+    }
+
+    handleActivities = (activities) => {
+        return activities.map((el) => {
+            let date = el["activity_date"].split("T")[0];
+            let time = el["activity_date"].split("T")[1];
+            return {
+                "activity_date": date,
+                "activity_time": time,
+                "type": el["type"],
+                "change": el["change"],
+                "label": el["label"]
+            }
+        })
     }
 
     componentDidMount() {
@@ -39,15 +74,19 @@ class Activities extends React.Component {
         axios.get(activitiesUrl, {
             headers: headers
         }).then(response => {
-            this.setState({activities: response.data})
+            this.setState({activities: this.handleActivities(response.data)})
         }).catch(console.log)
     }
 
     render() {
+        let act = (this.state.activities.length == 0)
+            ? null
+            : this.groupBy(this.state.activities, "activity_date")
+
         return (
-            <div>
-                <h3>Activities:</h3>
-                <Activity activities={this.state.activities}/>
+            <div className="content">
+                <h2>Activities:</h2>
+                <Activity activities={act}/>
             </div>
         )
     }
