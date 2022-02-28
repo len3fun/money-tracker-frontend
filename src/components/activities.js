@@ -7,26 +7,25 @@ const Activity = ({activities}) => {
             <></>
         )
     } else {
-        let socialLinks = [];
+        let activitiesArr = [];
         for (var date in activities) {
-            socialLinks.push(
+            activitiesArr.push(
                 <h2 key={date}>{date}</h2>
             )
             for (var i in activities[date]) {
-                console.log(activities[date][i]["id"])
-                let el = <div key={activities[date][i]["id"]}>
+                let el = <div className="box" key={activities[date][i]["id"]}>
                     <h5>{activities[date][i]["label"]}</h5>
                     {activities[date][i]["type"] === "expense" ?
-                        <span className="badge badge-danger badge-pill">-{activities[date][i]["change"]}</span> :
-                        <span className="badge badge-success badge-pill">+{activities[date][i]["change"]}</span>
+                        <span className="tag is-danger">-{activities[date][i]["change"]}</span> :
+                        <span className="tag is-success">+{activities[date][i]["change"]}</span>
                     }
                 </div>
-                socialLinks.push(el)
+                activitiesArr.push(el)
             }
         }
         return (
             <div>
-                {socialLinks}
+                {activitiesArr}
             </div>
         )
     }
